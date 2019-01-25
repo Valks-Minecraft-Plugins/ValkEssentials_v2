@@ -16,15 +16,16 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import com.valkessentials.chat.Broadcasts;
 import com.valkessentials.chat.Chat;
 import com.valkessentials.commands.Color;
+import com.valkessentials.commands.Fly;
 import com.valkessentials.commands.Help;
 import com.valkessentials.commands.Home;
 import com.valkessentials.commands.Kick;
 import com.valkessentials.commands.Mute;
 import com.valkessentials.commands.Rank;
 import com.valkessentials.commands.Speed;
-import com.valkessentials.commands.Teleport;
 import com.valkessentials.commands.Whisper;
 import com.valkessentials.configs.LoadPlayerFiles;
+import com.valkessentials.msc.Msc;
 
 public class ValkEssentials extends JavaPlugin {
 	public static ValkEssentials main;
@@ -35,6 +36,7 @@ public class ValkEssentials extends JavaPlugin {
 	
 	public ValkEssentials() {
 		name = getDescription().getName();
+		main = this;
 	}
 
 	@Override
@@ -57,6 +59,7 @@ public class ValkEssentials extends JavaPlugin {
 		pm.registerEvents(new Chat(), this);
 		pm.registerEvents(new Broadcasts(), this);
 		pm.registerEvents(new Help(), this);
+		pm.registerEvents(new Msc(), this);
 	}
 	
 	private void registerCommands() {
@@ -66,9 +69,7 @@ public class ValkEssentials extends JavaPlugin {
 		getCommand("sethome").setExecutor(new Home());
 		getCommand("delhome").setExecutor(new Home());
 		
-		getCommand("tpa").setExecutor(new Teleport());
-		getCommand("tpaccept").setExecutor(new Teleport());
-		getCommand("tpdeny").setExecutor(new Teleport());
+		getCommand("fly").setExecutor(new Fly());
 		
 		getCommand("kick").setExecutor(new Kick());
 		getCommand("mute").setExecutor(new Mute());
@@ -103,7 +104,7 @@ public class ValkEssentials extends JavaPlugin {
 
 		if (!msgConfig.isSet("messages.blockedwords")) {
 			List<String> msgs = Arrays.asList("fuck", "nigger", "cunt", "cunts", "bitch", "whore", "slut", "motherfucker",
-					"fucker", "blowjob", "dick", "kunt", "faggot", "niglet", "prick");
+					"fucker", "blowjob", "dick", "kunt", "faggot", "niglet", "prick", "testicles", "penis", "nigga", "cunt");
 			msgConfig.set("messages.blockedwords", msgs);
 		}
 		if (!msgConfig.isSet("messages.blockedreplace")) {

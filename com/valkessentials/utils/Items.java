@@ -41,6 +41,7 @@ public class Items {
 	}
 
 	public static ItemStack item(Material material, int amount, byte data, String name, String lore) {
+		@SuppressWarnings("deprecation")
 		ItemStack item = new ItemStack(material, amount, data);
 		ItemMeta item_meta = item.getItemMeta();
 		item_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5" + name));
@@ -83,7 +84,7 @@ public class Items {
 		return stack;
 	}
 	
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	public static void moreBlocks(Location loc, int width, int length, Material check, Material set) {
 		loc.setX(loc.getBlockX() - (width / 2));
 		loc.setZ(loc.getBlockZ() - (length / 2));
@@ -94,7 +95,7 @@ public class Items {
 					loc.setY(loc.getBlockY() + 1);
 					if (loc.getBlock().getType().equals(Material.AIR)) {
 						loc.getBlock().setType(set);
-						loc.getBlock().setData((byte) 1);
+						//loc.getBlock().setData((byte) 1);
 					}
 				} else {
 					loc.setY(loc.getBlockY() + 1);

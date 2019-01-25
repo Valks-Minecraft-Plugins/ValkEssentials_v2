@@ -13,8 +13,8 @@ public class Speed implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("speed")) {
 			Player p = Bukkit.getPlayer(sender.getName());
-			if (!p.isOp()) {
-				p.sendMessage(ValkEssentials.getPrefix() + "You're not op.");
+			if (!sender.hasPermission("essentials.speed")) {
+				sender.sendMessage(ValkEssentials.getPrefix() + "You need essentials.speed to do that.");
 				return true;
 			}
 			

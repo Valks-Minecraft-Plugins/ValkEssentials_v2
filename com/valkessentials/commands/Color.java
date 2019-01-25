@@ -14,8 +14,8 @@ import com.valkessentials.configs.PlayerFiles;
 public class Color implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("color")) {
-			if (!sender.isOp()) {
-				sender.sendMessage(ValkEssentials.getPrefix() + "You're not op.");
+			if (!sender.hasPermission("essentials.color")) {
+				sender.sendMessage(ValkEssentials.getPrefix() + "You need essentials.color to do that.");
 				return true;
 			}
 			

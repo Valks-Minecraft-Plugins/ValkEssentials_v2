@@ -13,8 +13,8 @@ import com.valkessentials.configs.PlayerFiles;
 public class Rank implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("rank")) {
-			if (!sender.isOp()) {
-				sender.sendMessage(ValkEssentials.getPrefix() + "You're not op.");
+			if (!sender.hasPermission("essentials.rank")) {
+				sender.sendMessage(ValkEssentials.getPrefix() + "You need essentials.rank to do that.");
 				return true;
 			}
 

@@ -1,0 +1,36 @@
+name: ValkEssentials
+main: com.valkessentials.ValkEssentials
+author: valkyrienyanko
+version: 1.0
+api-version: 1.13
+commands:
+   color:
+     description: Set chat color.
+     aliases: [c]
+     usage: /color
+   help:
+     description: Help.
+     aliases: [h]
+   home:
+     description: Teleport to home.
+   sethome:
+     description: Set home.
+   delhome:
+     description: Delete home.
+   kick:
+     description: Kick a player.
+     permission: essentials.kick
+   mute:
+     description: Mute a player.
+     permission: essentials.mute
+   rank:
+     description: Set a players rank.
+     permission: essentials.rank
+   speed:
+     description: Change your speed.
+     permission: essentials.speed
+   fly:
+     description: Set fly mode.
+     permission: essentials.fly
+   whisper:
+     description: Whisper to a player.

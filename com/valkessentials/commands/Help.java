@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +17,7 @@ import com.valkessentials.utils.Items;
 
 public class Help implements CommandExecutor, Listener {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (sender instanceof ConsoleCommandSender) return false;
 		if (command.getName().equalsIgnoreCase("help")) {
 			Player target = Bukkit.getPlayer(sender.getName());
 			target.openInventory(help());
@@ -31,6 +33,7 @@ public class Help implements CommandExecutor, Listener {
 		return info;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	private void registerClicks(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
@@ -39,7 +42,7 @@ public class Help implements CommandExecutor, Listener {
 			int slot = e.getSlot();
 			switch(slot) {
 			case 0:
-				p.sendMessage(ValkEssentials.getPrefix() + "http://discord.gg/FdHzkgy");
+				p.sendMessage(ValkEssentials.getPrefix() + "https://discord.gg/thMupbv");
 				p.closeInventory();
 				break;
 			case 1:

@@ -13,8 +13,8 @@ import com.valkessentials.configs.PlayerFiles;
 public class Mute implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("mute")) {
-			if (!sender.isOp()) {
-				sender.sendMessage(ValkEssentials.getPrefix() + "You're not op.");
+			if (!sender.hasPermission("essentials.mute")) {
+				sender.sendMessage(ValkEssentials.getPrefix() + "You need essentials.mute to do that.");
 				return true;
 			}
 			

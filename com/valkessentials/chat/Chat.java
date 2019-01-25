@@ -25,7 +25,6 @@ public class Chat implements Listener {
 		Player p = event.getPlayer();
 		PlayerFiles cm = PlayerFiles.getConfig(p);
 		FileConfiguration playerConfig = cm.getConfig();
-
 		Configuration config = plugin.getMsgConfig();
 		
 		if (playerConfig.getBoolean("muted") == true) {
@@ -34,59 +33,30 @@ public class Chat implements Listener {
 			return true;
 		}
 
-		String name = event.getPlayer().getDisplayName();
-		String message = event.getMessage();
-		List<String> msgs = config.getStringList("messages.blockedwords");
-		final int SIZE = msgs.size();
-		String[] messages = new String[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			messages[i] = msgs.get(i);
-		}
-		String chatColor = playerConfig.getString("color");
+		String formattedMessage = ChatColor.translateAlternateColorCodes('&', config.getString("messages.chat").replace("%player%", event.getPlayer().getDisplayName()).replace("%message%", event.getMessage()).replace("#color#", playerConfig.getString("color")).replaceAll("%", "%%"));
 
-		String msg = config.getString("messages.chat");
-
-		String change1 = msg.replace("%player%", name);
-		String change2 = change1.replace("%message%", message);
-		String change3 = change2.replace("#color#", chatColor);
-		String change4 = change3.replaceAll("%", "%%");
-
-		String msgColor = ChatColor.translateAlternateColorCodes('&', change4);
-
-		//String prefix = plugin.getConfig().getString("ranks." + playerConfig.getString("rank").toLowerCase());
 		String prefix = config.getString("messages.defaultrank");
 		List<String> stringPrefixs = config.getStringList("messages.ranks");
-		final int xSIZE = stringPrefixs.size();
-		String[] prefixs = new String[xSIZE];
-		for (int i = 0; i < xSIZE; i++) {
-			prefixs[i] = stringPrefixs.get(i);
-		}
-		for (int i = 0; i < xSIZE; i++) {
-			String check = prefixs[i];
-			int divider = check.indexOf(':');
+
+		for (String element : stringPrefixs) {
+			int divider = element.indexOf(':');
 			if (divider != -1) {
-				String rank = check.substring(0, divider);
+				String rank = element.substring(0, divider);
 				if (rank.toLowerCase().equals(playerConfig.getString("rank").toLowerCase())) {
 					final int DIVIDER_SPACE = 1;
 					final int SPACE = 1;
-					prefix = prefixs[i].substring(divider + DIVIDER_SPACE + SPACE);
+					prefix = element.substring(divider + DIVIDER_SPACE + SPACE);
 				}
 			}
 		}
 
 		String prefixColor = ChatColor.translateAlternateColorCodes('&', prefix);
-
-		for (String s : messages) {
-			String check = s.toLowerCase();
-			if (message.toLowerCase().contains(check)) {
-				String clean = msgColor.toLowerCase().replaceAll(check, config.getString("messages.blockedreplace"));
-				event.setFormat(prefixColor + clean);
-				return true;
-			} else {
-				event.setFormat(prefixColor + msgColor);
-				return true;
-			}
+		
+		for (String blocked_word : config.getStringList("messages.blockedwords")) {
+			formattedMessage = formattedMessage.toLowerCase().replaceAll(blocked_word, config.getString("messages.blockedreplace"));
 		}
+		
+		event.setFormat(prefixColor + formattedMessage);
 		
 		return true;
 	}

@@ -12,8 +12,8 @@ public class Kick implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kick")) {
 			Player p = Bukkit.getPlayer(sender.getName());
-			if (!p.isOp()) {
-				p.sendMessage(ValkEssentials.getPrefix() + "You're not op.");
+			if (!sender.hasPermission("essentials.kick")) {
+				sender.sendMessage(ValkEssentials.getPrefix() + "You need essentials.kick to do that.");
 				return true;
 			}
 			
