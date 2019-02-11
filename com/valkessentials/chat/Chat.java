@@ -1,6 +1,8 @@
 package com.valkessentials.chat;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
@@ -53,7 +55,7 @@ public class Chat implements Listener {
 		String prefixColor = ChatColor.translateAlternateColorCodes('&', prefix);
 		
 		for (String blocked_word : config.getStringList("messages.blockedwords")) {
-			formattedMessage = formattedMessage.toLowerCase().replaceAll(blocked_word, config.getString("messages.blockedreplace"));
+			formattedMessage = Pattern.compile(Pattern.quote(blocked_word), Pattern.CASE_INSENSITIVE).matcher(formattedMessage).replaceAll(Matcher.quoteReplacement(config.getString("messages.blockedreplace")));
 		}
 		
 		event.setFormat(prefixColor + formattedMessage);

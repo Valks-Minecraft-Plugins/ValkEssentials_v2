@@ -99,12 +99,14 @@ public class ValkEssentials extends JavaPlugin {
 	
 	private void setConfigMsgValues() {
 		if (!msgConfig.isSet("messages.chat")) {
-			msgConfig.set("messages.chat", "&8%player%&8: &7#color#%message%");
+			msgConfig.set("messages.chat", "&a%player%&7: &7#color#%message%");
 		}
 
 		if (!msgConfig.isSet("messages.blockedwords")) {
 			List<String> msgs = Arrays.asList("fuck", "nigger", "cunt", "cunts", "bitch", "whore", "slut", "motherfucker",
-					"fucker", "blowjob", "dick", "kunt", "faggot", "niglet", "prick", "testicles", "penis", "nigga", "cunt");
+					"fucker", "blowjob", "dick", "kunt", "faggot", "niglet", "prick", "testicles", "penis", "nigga", "cunt",
+					"cock", "penis", "negro", "fag", "faggit", "nibba", "niger", "shithead", "fack", "fuk", "fukk", "pussy",
+					"bittch", "bich", "dic", "asshole", "coock", "fuc");
 			msgConfig.set("messages.blockedwords", msgs);
 		}
 		if (!msgConfig.isSet("messages.blockedreplace")) {
@@ -112,11 +114,11 @@ public class ValkEssentials extends JavaPlugin {
 		}
 
 		if (!msgConfig.isSet("messages.ranks")) {
-			List<String> msgs = Arrays.asList("Mod: &8{&2Moderator&8} ", "Admin: &8{&cAdmin&8} ", "Owner: &8{&fOwner&8} ");
+			List<String> msgs = Arrays.asList("Developer: &7{&dDev&7} ", "Builder: &7{&6Builder&7} ", "Moderator: &7{&2Mod&7} ", "Admin: &7{&cAdmin&7} ", "Co-Owner: &7{&fCo&7-&fOwner&7} ", "Owner: &7{&fOwner&7} ");
 			msgConfig.set("messages.ranks", msgs);
 		}
 		if (!msgConfig.isSet("messages.defaultrank")) {
-			msgConfig.set("messages.defaultrank", "&8{&7User&8} ");
+			msgConfig.set("messages.defaultrank", "&7{&2User&7} ");
 		}
 
 		if (!msgConfig.isSet("messages.join")) {

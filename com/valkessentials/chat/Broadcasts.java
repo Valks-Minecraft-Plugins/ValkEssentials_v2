@@ -35,7 +35,7 @@ public class Broadcasts implements Listener {
 		String name = p.getName();
 		Bukkit.createBossBar(name + " joined", BarColor.PURPLE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 		if (p.hasPlayedBefore()) {
-			p.sendTitle("Beta", "v0.1.2.0", 100, 300, 100);
+			p.sendTitle("Beta", "v0.3.0.0", 100, 300, 100);
 			List<String> msgs = config.getStringList("messages.join");
 			final int SIZE = msgs.size();
 			String[] messages = new String[SIZE];
