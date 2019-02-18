@@ -3,7 +3,6 @@ package com.valkessentials.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,9 +11,39 @@ import org.bukkit.entity.Player;
 import com.valkessentials.ValkEssentials;
 import com.valkessentials.configs.PlayerFiles;
 
-public class Home implements CommandExecutor {
+public class Home extends Cmd {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (command.getName().equalsIgnoreCase("home")) {
+		super.onCommand(sender, command, label, args);
+		
+		if (cmd("delhome", "none", 0)) {
+			Player target = Bukkit.getPlayer(sender.getName());
+			PlayerFiles cm = PlayerFiles.getConfig(target);
+			FileConfiguration config = cm.getConfig();
+			config.set("home.x", null);
+			config.set("home.y", null);
+			config.set("home.z", null);
+			config.set("home.world", null);
+			cm.saveConfig();
+			sender.sendMessage(ValkEssentials.getPrefix() + "Home removed.");
+			return true;
+		}
+		
+		if (cmd("sethome", "none", 0)) {
+			Player target = Bukkit.getPlayer(sender.getName());
+			PlayerFiles cm = PlayerFiles.getConfig(target);
+			FileConfiguration config = cm.getConfig();
+			Location loc = target.getLocation();
+			config.set("home.x", loc.getBlockX());
+			config.set("home.y", loc.getBlockY());
+			config.set("home.z", loc.getBlockZ());
+			config.set("home.world", target.getWorld().getName());
+			cm.saveConfig();
+			sender.sendMessage(ValkEssentials.getPrefix() + "Home set.");
+			
+			return true;
+		}
+		
+		if (cmd("home", "none", 120)) {
 			Player target = Bukkit.getPlayer(sender.getName());
 
 			if (sender instanceof ConsoleCommandSender) {
@@ -40,36 +69,12 @@ public class Home implements CommandExecutor {
 			} else {
 				target.sendMessage(ValkEssentials.getPrefix() + "Make a bed or set a home with /sethome.");
 			}
-			return true;
-		}
-
-		if (command.getName().equalsIgnoreCase("sethome")) {
-			Player target = Bukkit.getPlayer(sender.getName());
-			PlayerFiles cm = PlayerFiles.getConfig(target);
-			FileConfiguration config = cm.getConfig();
-			Location loc = target.getLocation();
-			config.set("home.x", loc.getBlockX());
-			config.set("home.y", loc.getBlockY());
-			config.set("home.z", loc.getBlockZ());
-			config.set("home.world", target.getWorld().getName());
-			cm.saveConfig();
-			sender.sendMessage(ValkEssentials.getPrefix() + "Home set.");
+			
 			return true;
 		}
 		
-		if (command.getName().equalsIgnoreCase("delhome")) {
-			Player target = Bukkit.getPlayer(sender.getName());
-			PlayerFiles cm = PlayerFiles.getConfig(target);
-			FileConfiguration config = cm.getConfig();
-			config.set("home.x", null);
-			config.set("home.y", null);
-			config.set("home.z", null);
-			config.set("home.world", null);
-			cm.saveConfig();
-			sender.sendMessage(ValkEssentials.getPrefix() + "Home removed.");
-			return true;
-		}
-		return false;
+		
+		return true;
 	}
 
 }

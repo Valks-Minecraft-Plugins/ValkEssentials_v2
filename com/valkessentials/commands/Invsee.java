@@ -5,21 +5,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Fly extends Cmd {
-
+public class Invsee extends Cmd {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		super.onCommand(sender, command, label, args);
-		if (!cmd("fly", "essentials.fly", 0)) return false;
+		if (!cmd("invsee", "essentials.invsee", 0)) return false;
 		
-		Player p = Bukkit.getPlayer(sender.getName());
-		
-		if (p.isFlying()) {
-			p.setFlying(false);
-		} else {
-			p.setFlying(true);
-		}
+		if (args.length < 1) return true;
+		Player target = Bukkit.getPlayer(args[0]);
+		if (target == null) return true;
+		Player viewer = (Player) sender;
+		viewer.openInventory(target.getInventory());
 		return true;
 	}
-
 }

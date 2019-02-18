@@ -10,7 +10,7 @@ commands:
      usage: /color
    help:
      description: Help.
-     aliases: [h]
+     aliases: [h, about, donate, info, purchase]
    home:
      description: Teleport to home.
    sethome:
@@ -34,3 +34,25 @@ commands:
      permission: essentials.fly
    whisper:
      description: Whisper to a player.
+     aliases: [w, t, tell, msg]
+   spawn:
+     description: Teleport to spawn.
+     aliases: [s]
+   gamemode:
+     description: Set your gamemode.
+     aliases: [gm]
+   invsee:
+     description: View targets inventory.
+   back:
+     description: Go back to death location.
+     aliases: [b]
+   tpa:
+     description: Request teleport.
+   tpdeny:
+     description: Deny request.
+   tpaccept:
+     description: Accept request.
+   tpahere:
+     description: Request tp.
+   butcher:
+     description: Kill all hostile living entities in world.

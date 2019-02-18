@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="lib" path="C:/Users/valkyrienyanko/Documents/spigot-1.13.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/valkyrienyanko/Desktop/server/plugins/ValkUtils.jar"/>
+	<classpathentry kind="src" path="/ValkUtils"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
