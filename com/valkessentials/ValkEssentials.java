@@ -32,6 +32,7 @@ import com.valkessentials.commands.Rank;
 import com.valkessentials.commands.Spawn;
 import com.valkessentials.commands.Speed;
 import com.valkessentials.commands.Tpa;
+import com.valkessentials.commands.Vanish;
 import com.valkessentials.commands.Whisper;
 import com.valkessentials.configs.LoadPlayerFiles;
 import com.valkessentials.listeners.PlayerDeathListener;
@@ -100,6 +101,7 @@ public class ValkEssentials extends JavaPlugin {
 		getCommand("tpdeny").setExecutor(new Tpa());
 		getCommand("tpahere").setExecutor(new Tpa());
 		getCommand("butcher").setExecutor(new Butcher());
+		getCommand("vanish").setExecutor(new Vanish());
 	}
 
 	public static String getPrefix() {

@@ -56,3 +56,6 @@ commands:
      description: Request tp.
    butcher:
      description: Kill all hostile living entities in world.
+   vanish:
+     description: Vanish
+     aliases: [v]

@@ -21,6 +21,7 @@ public class RankChangeEventListener implements Listener {
 		case "trial mod":
 		case "mod":
 			// Moderator
+			setPerm(p, "essentials.vanish");
 			setPerm(p, "essentials.butcher");
 			setPerm(p, "essentials.mute");
 			setPerm(p, "essentials.fly");
@@ -45,6 +46,7 @@ public class RankChangeEventListener implements Listener {
 		case "trial admin":
 		case "admin":
 			// Moderator
+			setPerm(p, "essentials.vanish");
 			setPerm(p, "essentials.butcher");
 			setPerm(p, "essentials.mute");
 			setPerm(p, "essentials.fly");
