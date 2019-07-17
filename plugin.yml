@@ -2,7 +2,7 @@ name: ValkEssentials
 main: com.valkessentials.ValkEssentials
 author: valkyrienyanko
 version: 1.0
-api-version: 1.13
+api-version: 1.14
 commands:
    color:
      description: Set chat color.

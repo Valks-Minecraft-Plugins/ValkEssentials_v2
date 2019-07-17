@@ -458,7 +458,6 @@ public class Help extends Cmd implements Listener {
 	/*
 	 * Recipe home navigation pages.
 	 */
-	@SuppressWarnings("deprecation")
 	public void itemNavigation(InventoryClickEvent event, List<Inventory> navigation, Map<String, Integer> navTracker,
 			List<Inventory> recipes, Map<String, Integer> recipeTracker) {
 		Player p = (Player) event.getWhoClicked();
@@ -471,7 +470,7 @@ public class Help extends Cmd implements Listener {
 
 		int slot = event.getSlot();
 		// handle item home navigation
-		if (invName.equals(navigation.get(0).getName())) {
+		if (invName.equals(navigation.get(0).getType().getDefaultTitle())) {
 			event.setCancelled(true);
 			if (!isAir) {
 				switch (slot) {
@@ -503,14 +502,13 @@ public class Help extends Cmd implements Listener {
 	/*
 	 * Specific recipe pages.
 	 */
-	@SuppressWarnings("deprecation")
 	public void recipeNavigation(InventoryClickEvent event, List<Inventory> navigation, Map<String, Integer> navTracker,
 			List<Inventory> recipes, Map<String, Integer> recipeTracker) {
 		Player p = (Player) event.getWhoClicked();
 		String invName = event.getView().getTitle();
 		int slot = event.getSlot();
 		// handle recipe navigation
-		if (invName.equals(recipes.get(0).getName())) {
+		if (invName.equals(recipes.get(0).getType().getDefaultTitle())) {
 			event.setCancelled(true);
 			switch (slot) {
 			case 18 + 9:
